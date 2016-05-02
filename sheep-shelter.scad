@@ -3,19 +3,19 @@
  * Author: Michal Konecny
  */
 
-// All measurements are in mm
+// All measurements are in cm
 
 // beam
-beam_width=200;
-front_beam_height=2400;
-rear_beam_height=2000;
-column_offset=1800;
+beam_width=20;
+front_beam_height=240;
+rear_beam_height=200;
+column_offset=180;
 ceiling_beam_length=column_offset-beam_width;
 
 // plank
-plank_width=200;
-plank_height=20;
-plank_length=2000;
+plank_width=20;
+plank_height=2;
+plank_length=200;
 
 
 // create all six columns
@@ -46,12 +46,11 @@ addRoofCeilingBeam(column_offset+beam_width,0,rear_beam_height,beam_width,
   beam_width,ceiling_beam_length,90,0);
 addRoofCeilingBeam(column_offset+beam_width,beam_width,rear_beam_height,
   beam_width,beam_width,ceiling_beam_length,90,90);
-roof_beam_length=sqrt(pow(front_beam_height-rear_beam_height)+
-  pow(column_offset + 2*beam_width));
-roof_beam_angle=sin((front_beam_height-rear_beam_height)/roof_beam_length);
-echo(pow(400));
-echo("Roof beam length = " + roof_beam_length);
-echo("Roof beam angle = " + roof_beam_angle);
+roof_beam_length=sqrt(pow((front_beam_height-rear_beam_height),2)+
+  pow((column_offset + beam_width),2));
+roof_beam_angle=asin((front_beam_height-rear_beam_height)/roof_beam_length);
+echo("Roof beam length = ", roof_beam_length);
+echo("Roof beam angle = ", roof_beam_angle);
 addRoofCeilingBeam(beam_width,0,front_beam_height,
   beam_width,beam_width,roof_beam_length,90+roof_beam_angle,90);
 addRoofCeilingBeam(beam_width+column_offset,0,front_beam_height,
